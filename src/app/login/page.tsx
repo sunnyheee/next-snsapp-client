@@ -3,7 +3,7 @@ import apiClient from "@/lib/apiClient";
 import Head from "next/head";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { useAuth } from "../context/auth";
+import { useAuth } from "../../context/auth";
 
 const Login = () => {
   const [email, setEmail] = useState<string>("");

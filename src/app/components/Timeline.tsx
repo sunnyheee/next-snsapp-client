@@ -2,7 +2,7 @@
 import apiClient from "@/lib/apiClient";
 import Post from "./Post";
 import { useEffect, useState } from "react";
-import { PostType } from "../types";
+import { PostType } from "../../types";
 
 const Timeline = () => {
   const [postText, setPostText] = useState<string>("");
