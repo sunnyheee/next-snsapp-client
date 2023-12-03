@@ -1,7 +1,14 @@
 import Link from "next/link";
 import Image from "next/image";
+import { PostType } from "@/types";
 
-const Post = () => {
+type Props = {
+  post: PostType;
+};
+
+const Post = (props: Props) => {
+  const { post } = props;
+
   return (
     <div className="container mx-auto bg-white shadow-md rounded p-4 mb-4">
       <div className="mb-4">
@@ -10,11 +17,15 @@ const Post = () => {
             <Image src="/" width={0} height={0} alt="" />
           </Link>
           <div>
-            <h2 className="font-semibold text-md text-black">username</h2>
-            <p className="text-gray-500 text-sm">createdAt</p>
+            <h2 className="font-semibold text-md text-black">
+              {post.author?.username}
+            </h2>
+            <p className="text-gray-500 text-sm">
+              {new Date(post.createdAt).toLocaleString()}
+            </p>
           </div>
         </div>
-        <p className="text-gray-700">content</p>
+        <p className="text-gray-700">{post.content}</p>
       </div>
     </div>
   );
