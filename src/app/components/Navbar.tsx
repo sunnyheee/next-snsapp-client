@@ -4,7 +4,6 @@ import { useAuth } from "../../context/auth";
 
 const Navbar = () => {
   const { user, logout } = useAuth();
-  console.log(user);
 
   return (
     <header className="bg-gray-700 p-4 text-white">
@@ -19,7 +18,7 @@ const Navbar = () => {
             {user ? (
               <>
                 <Link
-                  href="/profile"
+                  href={`/profile/${user.id}`}
                   className="bg-white text-gray-900 py-2 px-3 rounded-lg font-medium"
                 >
                   プロフィール
