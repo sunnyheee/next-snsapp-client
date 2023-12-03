@@ -6,10 +6,9 @@ import { PostType, Profile } from "@/types";
 type Props = {
   profile: Profile;
   posts: PostType[];
-  params: any;
 };
 
-const Profile = async ({ params }: Props) => {
+const Profile = async ({ params }: { params: { userId: number } }) => {
   const profileData = await getDetailProfile(params?.userId);
   const posts = await getDetailPosts(params?.userId);
   console.log(profileData);
