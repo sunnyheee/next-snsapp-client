@@ -3,12 +3,15 @@ import apiClient from "@/lib/apiClient";
 import Head from "next/head";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { useAuth } from "../context/auth";
 
 const Login = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
 
   const router = useRouter();
+
+  const { login } = useAuth();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -20,7 +23,9 @@ const Login = () => {
         password,
       });
       const token = response.data.token;
-      console.log(token);
+
+      login(token);
+
       router.push("/");
     } catch (err) {
       alert("入力内容が正しくありません。");
