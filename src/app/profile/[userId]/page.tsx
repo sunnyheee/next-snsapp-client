@@ -11,7 +11,6 @@ type Props = {
 const Profile = async ({ params }: { params: { userId: number } }) => {
   const profileData = await getDetailProfile(params?.userId);
   const posts = await getDetailPosts(params?.userId);
-  console.log(profileData);
 
   return (
     <div className="container mx-auto px-4 py-8">

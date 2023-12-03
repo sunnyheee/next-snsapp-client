@@ -9,7 +9,6 @@ type Props = {
 
 const Post = (props: Props) => {
   const { post } = props;
-  console.log(post.author.profile);
 
   return (
     <div className="container mx-auto bg-white shadow-md rounded p-4 mb-4">

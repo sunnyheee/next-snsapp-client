@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 
 export const getDetailProfile = async (userId: number) => {
   const res = await fetch(
-    `http://localhost:10000/api/users/profile/${userId}`,
+    `https://next-sns-api-pj5d.onrender.com/api/users/profile/${userId}`,
     {
       cache: "no-store",
     }
@@ -22,9 +22,13 @@ export const getDetailProfile = async (userId: number) => {
 };
 
 export const getDetailPosts = async (userId: number) => {
-  const res = await fetch(`http://localhost:10000/api/posts/${userId}`, {
-    cache: "no-store",
-  });
+  const res = await fetch(
+    `https://next-sns-api-pj5d.onrender.com/api/posts/${userId}`,
+    {
+      // cache: "no-store",
+      next: { revalidate: 60 },
+    }
+  ); //ISR
 
   if (res.status === 404) {
     notFound();
