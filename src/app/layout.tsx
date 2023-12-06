@@ -7,7 +7,10 @@ import { AuthProvider } from "../context/auth";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Next SNS APP",
+  title: {
+    default: "Next SNS APP", //
+    template: "Next SNS APP | %s",
+  },
   description: "Next SNS APP",
 };
 

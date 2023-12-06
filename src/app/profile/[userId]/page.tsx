@@ -2,11 +2,43 @@ import React from "react";
 import Image from "next/image";
 import { getDetailPosts, getDetailProfile } from "@/snsAPI";
 import { PostType, Profile } from "@/types";
+import { Metadata } from "next";
+import PostUtil from "../../../util/PostUtil";
 
 type Props = {
   profile: Profile;
   posts: PostType[];
 };
+
+export async function generateMetadata({ params }: any) {
+  const profileData = await getDetailProfile(params?.userId);
+  const title = `${profileData.user.username}'s profile`;
+  const description = `${profileData.user.username}のプロフィールです。`;
+  const tags = ["SNS", "NEXT", "JS"];
+  const imgUrl = "/images/";
+  return {
+    title,
+    description,
+    keywords: tags,
+    openGraph: {
+      title,
+      description,
+    },
+    twitter: {
+      card: "summary_large_image",
+      creator: "sunny park",
+      title,
+      description,
+      images: {
+        url: imgUrl || "",
+        alt: "Profile Image",
+      },
+    },
+  };
+}
+// export function generateMetadata({ params: { userId } }: any): Metadata {
+//   return PostUtil.getMetadataBySlug(userId);
+// }
 
 const Profile = async ({ params }: { params: { userId: number } }) => {
   const profileData = await getDetailProfile(params?.userId);
